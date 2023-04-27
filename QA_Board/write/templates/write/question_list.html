@@ -1,0 +1,46 @@
+{% extends "write/base.html" %}
+
+{% block content %}
+<div class="card mb-3" style="max-width: 540px;" onclick="location.href='/question/form/'">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="/static/image/question.jpeg" class="card-img-top" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><h3 class="text-danger">I have a question!</h3></h5>
+          <p class="card-text">It is not the answer that enlightens, but the question. Click here to ask a question.</p>
+          <p class="card-text"><small class="text-muted">Last question 3 days ago</small></p>
+        </div>
+      </div>
+    </div>
+</div>
+</br>
+<table class="table table-hover" id='board_list2'>
+    <thead>
+        <tr>
+            <th class="text-center d-none d-md-table-cell">제목</th>
+            <th class="text-center d-none d-md-table-cell">내용</th>
+            <th class="text-center d-none d-md-table-cell">작성자</th>
+            <th class="text-center d-none d-md-table-cell">등록일시</th>
+            <th class="text-center d-none d-md-table-cell"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for question in question_list %}
+        <tr>
+            <td class="text-center d-none d-md-table-cell">{{question.title}}</td>
+            <td class="text-center d-none d-md-table-cell">{{question.content}}</td>
+            <td class="text-center d-none d-md-table-cell">{{question.askedBy}}</td>
+            <td class="text-center d-none d-md-table-cell">{{question.askedDate}}</td>
+            <td class="text-center d-none d-md-table-cell">
+                <form action="{% url 'question_delete' question.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">삭제</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

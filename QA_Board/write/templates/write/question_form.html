@@ -1,0 +1,31 @@
+{% extends "write/base.html" %}
+
+{% block content %}
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    <div class="row mt-4">
+        <div class="col-12">
+          <label>Title</label>
+          <input type="title" name="title" value="{{title}}" class="form-control" maxlength="100" placeholder="제목을 입력하세요">
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+          <label>Content</label>
+          <textarea type="content" name="content" value="{{content}}" class="form-control" rows="7" maxlength="400" placeholder="질문 내용을 입력하세요"></textarea>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+          <label>Student Name</label>
+          <input type="askedBy" name="askedBy" value="{{askedBy}}" class="form-control" maxlength="20" placeholder="데이빗">
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <button type="button" class="btn btn-light btn-lg" onclick="location.href='/question/'">Cancel</button>
+            <button type="submit" class="btn btn-dark btn-lg">Ask Question!</button>
+        </div>
+    </div>
+</form>
+{% endblock content %}
